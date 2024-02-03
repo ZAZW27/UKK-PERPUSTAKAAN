@@ -1,7 +1,19 @@
-<?php include '../../config.php'; ?>
+<?php 
+include '../../config.php'; 
+session_start();
+if (!isset($_SESSION['username'])) {
+    header('location:../auth/login.html');
+}
+
+$nama_lengkap = $_SESSION['nama_lengkap'];
+$username = $_SESSION['username'];
+$level = $_SESSION['level'];
+$id_user = $_SESSION['id_user'];
+
+?>
 
 <!DOCTYPE html>
-<html lang="en" data-theme="autumn">
+<html lang="en" data-theme="fantasy">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +24,7 @@
 </head>
 <body class="">
     <header class="fixed w-[100vw] z-[99]">
-        <nav class="navbar bg-base-100 w-full shadow-lg">
+        <nav class="navbar bg-base-100 w-full shadow-lg px-1 md:px-12">
             <div class="navbar-start">
                 <div class="drawer md:hidden"><font></font>
                     <div id="modal-btn" class="drawer-content"><font></font>
@@ -38,15 +50,15 @@
                 <a class="btn btn-ghost text-xl"  href="../main/index.php">Perpustakaan</a>
             </div>
             <div class="navbar-end">
-                <button class="btn btn-ghost btn-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                </button>
-                <button class="btn btn-ghost btn-circle">
+                <a class="<?= $level == 'administrator' ? '' : 'hidden' ?>" href="../admin/index.php" class="btn btn-ghost btn-circle">Admin</a>
+                <a class="<?= $level == 'petugas' ? '' : 'hidden' ?>" href="../sortir/index.php" class="btn btn-ghost btn-circle">Sortir</a>
+                <a class="<?= $level == 'peminjam' ? '' : 'hidden' ?>" href="../user/index.php" class="btn btn-ghost btn-circle">User</a>
+                <a href="../auth/crud/aksi-logout.php" class="btn btn-ghost btn-circle">
                     <div class="indicator">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-                        <span class="badge badge-xs badge-primary indicator-item"></span>
+                        <!-- <svg fill="#3e3737" width="64px" height="64px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" stroke="#3e3737" stroke-width="0.00016"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#fefbfb" stroke-width="1.536"><path d="M1.3 3.75h5.88V2.5H1.3A1.25 1.25 0 0 0 .05 3.75v8.5A1.25 1.25 0 0 0 1.3 13.5h5.88v-1.25H1.3z"></path><path d="m15.4 7-4-2.74-.71 1 3.08 2.1H4.71v1.26h9.07l-3.08 2.11.71 1L15.4 9a1.24 1.24 0 0 0 0-2z"></path></g><g id="SVGRepo_iconCarrier"><path d="M1.3 3.75h5.88V2.5H1.3A1.25 1.25 0 0 0 .05 3.75v8.5A1.25 1.25 0 0 0 1.3 13.5h5.88v-1.25H1.3z"></path><path d="m15.4 7-4-2.74-.71 1 3.08 2.1H4.71v1.26h9.07l-3.08 2.11.71 1L15.4 9a1.24 1.24 0 0 0 0-2z"></path></g></svg> -->
+                        <svg fill="#3e3737" class="w-6 h-6" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" stroke="#3e3737" stroke-width="0.00016"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#fefbfb" stroke-width="1.536"><path d="M1.3 3.75h5.88V2.5H1.3A1.25 1.25 0 0 0 .05 3.75v8.5A1.25 1.25 0 0 0 1.3 13.5h5.88v-1.25H1.3z"></path><path d="m15.4 7-4-2.74-.71 1 3.08 2.1H4.71v1.26h9.07l-3.08 2.11.71 1L15.4 9a1.24 1.24 0 0 0 0-2z"></path></g><g id="SVGRepo_iconCarrier"><path d="M1.3 3.75h5.88V2.5H1.3A1.25 1.25 0 0 0 .05 3.75v8.5A1.25 1.25 0 0 0 1.3 13.5h5.88v-1.25H1.3z"></path><path d="m15.4 7-4-2.74-.71 1 3.08 2.1H4.71v1.26h9.07l-3.08 2.11.71 1L15.4 9a1.24 1.24 0 0 0 0-2z"></path></g></svg>
                     </div>
-                </button>
+                </a>
             </div>
         </nav>
     </header>
