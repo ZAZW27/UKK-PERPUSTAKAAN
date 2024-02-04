@@ -11,7 +11,7 @@
     ?>
     <main class="relative top-16 z-[10] px-0 md:px-3 py-4 flex flex-col justify-center items-center">
         <div class="mx-auto flex flex-col justify-center items-center">
-            <h1 class="text-3xl text-center font-bold">Sortir </h1>
+            <h1 class="text-3xl text-center font-bold flex justify-center items-center gap-2">Sortir <a href="tambah.php" class="btn btn-success btn-sm text-base-100">Tambah +</a></h1>
         </div>
         <div class="flex justify-between items-start w-full px-0 md:px-6">
             <div id="category-modal" class="grid w-full md:w-[40rem] h-20 px-4 fixed -top-[100vh] z-[11] flex-grow transition-all duration-300 ease-in-out">
